@@ -29,6 +29,9 @@ class Agent(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     agent_name = models.CharField(max_length=100)
 
+    def __str__(self):
+        return self.agent_name
+
 
 class Lead(models.Model):
     agent = models.ForeignKey(Agent, on_delete=models.PROTECT)
@@ -40,4 +43,4 @@ class Lead(models.Model):
     profile_picture = models.ImageField(blank=True, null=True, default='default.jpg', upload_to='CRM_FILES')
 
     def __str__(self):
-        return f"{self.first_name} {self.last_name}"
+        return self.lead_name
